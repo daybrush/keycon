@@ -8,6 +8,7 @@ export default builder([
         resolve: true,
         commonjs: true,
         external: {
+            "@daybrush/utils": "utils",
             "@egjs/component": "eg.Component",
         },
     },
@@ -19,6 +20,7 @@ export default builder([
         commonjs: true,
         uglify: true,
         external: {
+            "@daybrush/utils": "utils",
             "@egjs/component": "eg.Component",
         },
     },
