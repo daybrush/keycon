@@ -1,0 +1,38 @@
+{
+  "name": "keycon",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./dist/keycon.js",
+  "module": "./dist/keycon.esm.js",
+  "sideEffects": false,
+  "types": "declaration/KeyController.d.ts",
+  "scripts": {
+    "start": "rollup -c -w",
+    "build": "rollup -c && npm run declaration && print-sizes ./dist ",
+    "declaration": "rm -rf declaration && tsc -p tsconfig.declaration.json",
+    "release": "npm run build && release",
+    "release:init": "npm run build && release -i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daybrush/keycon.git"
+  },
+  "author": "Daybrush",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daybrush/keycon/issues"
+  },
+  "homepage": "https://github.com/daybrush/keycon#readme",
+  "dependencies": {
+    "@daybrush/utils": "^0.7.0",
+    "@egjs/component": "^2.1.2",
+    "keycode": "^2.2.0"
+  },
+  "devDependencies": {
+    "@daybrush/builder": "0.0.4",
+    "@daybrush/release": "^0.1.1",
+    "print-sizes": "0.0.4",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.3"
+  }
+}
