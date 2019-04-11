@@ -16,7 +16,7 @@ function getKey(keyCode: number) {
     return key.replace(/\s/g, "");
 }
 
-class KeyController extends Component {
+export class KeyController extends Component {
     constructor() {
         super();
 
