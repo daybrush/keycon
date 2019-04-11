@@ -33,6 +33,7 @@ export class KeyController extends Component {
         const key = getKey(e.keyCode);
 
         this.trigger(`${type}.${key}`, {
+            inputEvent: e,
             ctrlKey: e.ctrlKey,
             altKey: e.altKey,
             shiftKey: e.shiftKey,
