@@ -244,7 +244,7 @@ Copyright (c) 2018 Daybrush
 license: MIT
 author: Daybrush
 repository: https://github.com/daybrush/utils
-@version 0.7.0
+@version 0.7.1
 */
 /**
 * get string "string"
@@ -256,6 +256,24 @@ console.log(STRING); // "string"
 */
 
 var STRING = "string";
+/**
+* Check the type that the value is isArray.
+* @memberof Utils
+* @param {string} value - Value to check the type
+* @return {} true if the type is correct, false otherwise
+* @example
+import {isArray} from "@daybrush/utils";
+
+console.log(isArray([])); // true
+console.log(isArray({})); // false
+console.log(isArray(undefined)); // false
+console.log(isArray(null)); // false
+*/
+
+
+function isArray(value) {
+  return Array.isArray(value);
+}
 /**
 * Check the type that the value is string.
 * @memberof Utils
@@ -274,11 +292,36 @@ console.log(isString(null)); // false
 function isString(value) {
   return typeof value === STRING;
 }
+/**
+* Sets up a function that will be called whenever the specified event is delivered to the target
+* @memberof DOM
+* @param - event target
+* @param - A case-sensitive string representing the event type to listen for.
+* @param - The object which receives a notification (an object that implements the Event interface) when an event of the specified type occurs
+* @param - An options object that specifies characteristics about the event listener. The available options are:
+* @example
+import {addEvent} from "@daybrush/utils";
+
+addEvent(el, "click", e => {
+  console.log(e);
+});
+*/
+
+
+function addEvent(el, type, listener, options) {
+  el.addEventListener(type, listener, options);
+}
 
 var codeData = {
   "+": "plus",
   "left command": "meta",
   "right command": "meta"
+};
+var keysSort = {
+  shift: 1,
+  ctrl: 2,
+  alt: 3,
+  meta: 4
 };
 
 function getKey(keyCode) {
@@ -289,6 +332,22 @@ function getKey(keyCode) {
   }
 
   return key.replace(/\s/g, "");
+}
+
+function getCombi(e, key) {
+  var keys = [e.shiftKey && "shift", e.ctrlKey && "ctrl", e.altKey && "alt", e.metaKey && "meta"];
+  keys.indexOf(key) === -1 && keys.push(key);
+  return keys.filter(Boolean);
+}
+
+function getArrangeCombi(keys) {
+  var arrangeKeys = keys.slice();
+  arrangeKeys.sort(function (prev, next) {
+    var prevScore = keysSort[prev] || 5;
+    var nextScore = keysSort[next] || 5;
+    return prevScore - nextScore;
+  });
+  return arrangeKeys;
 }
 
 var KeyController =
@@ -303,6 +362,18 @@ function (_super) {
 
     var _this = _super.call(this) || this;
 
+    _this.ctrlKey = false;
+    _this.altKey = false;
+    _this.shiftKey = false;
+    _this.metaKey = false;
+
+    _this.clear = function () {
+      _this.ctrlKey = false;
+      _this.altKey = false;
+      _this.shiftKey = false;
+      _this.metaKey = false;
+    };
+
     _this.keydownEvent = function (e) {
       _this.triggerEvent("keydown", e);
     };
@@ -311,30 +382,40 @@ function (_super) {
       _this.triggerEvent("keyup", e);
     };
 
-    container.addEventListener("keydown", _this.keydownEvent);
-    container.addEventListener("keyup", _this.keyupEvent);
+    addEvent(container, "blur", _this.clear);
+    addEvent(container, "keydown", _this.keydownEvent);
+    addEvent(container, "keyup", _this.keyupEvent);
     return _this;
   }
 
   var __proto = KeyController.prototype;
 
   __proto.keydown = function (comb, callback) {
-    if (isString(comb)) {
-      return this.on("keydown." + comb, callback);
-    } else {
-      return this.on("keydown", callback);
-    }
+    return this.addEvent("keydown", comb, callback);
   };
 
   __proto.keyup = function (comb, callback) {
-    if (typeof comb === "string") {
-      return this.on("keyup." + comb, callback);
-    } else {
-      return this.on("keyup", callback);
+    return this.addEvent("keyup", comb, callback);
+  };
+
+  __proto.addEvent = function (type, comb, callback) {
+    var name = type;
+
+    if (isArray(comb)) {
+      name = type + "." + getArrangeCombi(comb).join(".");
+    } else if (isString(comb)) {
+      name = type + "." + comb;
     }
+
+    this.on(name, callback);
+    return this;
   };
 
   __proto.triggerEvent = function (type, e) {
+    this.ctrlKey = e.ctrlKey;
+    this.shiftKey = e.shiftKey;
+    this.altKey = e.altKey;
+    this.metaKey = e.metaKey;
     var key = getKey(e.keyCode);
     var param = {
       key: key,
@@ -347,12 +428,14 @@ function (_super) {
     };
     this.trigger(type, param);
     this.trigger(type + "." + key, param);
+    var combi = getCombi(e, key);
+    combi.length > 1 && this.trigger(type + "." + combi.join("."), param);
   };
 
   return KeyController;
 }(Component);
-function keycon() {
-  return new KeyController();
+function keycon(container) {
+  return new KeyController(container);
 }
 
 export default keycon;
