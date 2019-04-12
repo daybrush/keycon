@@ -38,6 +38,10 @@ function getArrangeCombi(keys: string[]) {
 
     return arrangeKeys;
 }
+/**
+ * @typedef
+ * @memberof KeyController
+ */
 export interface KeyControllerEvent {
     inputEvent: KeyboardEvent;
     key: string;
@@ -47,11 +51,26 @@ export interface KeyControllerEvent {
     shiftKey: boolean;
     metaKey: boolean;
 }
-export class KeyController extends Component {
+/**
+ */
+class KeyController extends Component {
+    /**
+     */
     public ctrlKey = false;
+    /**
+     */
     public altKey = false;
+    /**
+     *
+     */
     public shiftKey = false;
+    /**
+     *
+     */
     public metaKey = false;
+    /**
+     *
+     */
     constructor(container: Window | Document | HTMLElement = window) {
         super();
 
@@ -67,6 +86,9 @@ export class KeyController extends Component {
     }
     public keydown(comb: string | string[], callback: (e: KeyControllerEvent) => void): this;
     public keydown(callback: (e: KeyControllerEvent) => void): this;
+    /**
+     *
+     */
     public keydown(
         comb: string | string[] | ((e: KeyControllerEvent) => void),
         callback?: (e: KeyControllerEvent) => void,
@@ -75,6 +97,9 @@ export class KeyController extends Component {
     }
     public keyup(comb: string | string[], callback: (e: KeyControllerEvent) => void): this;
     public keyup(callback: (e: KeyControllerEvent) => void): this;
+    /**
+     *
+     */
     public keyup(
         comb: string | string[] | ((e: KeyControllerEvent) => void),
         callback?: (e: KeyControllerEvent) => void,
@@ -126,6 +151,4 @@ export class KeyController extends Component {
     }
 }
 
-export default function keycon(container?: Window | Document | HTMLElement) {
-    return new KeyController(container);
-}
+export default KeyController;
