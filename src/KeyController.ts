@@ -86,13 +86,13 @@ export class KeyController extends Component {
         comb: string | string[] | ((e: KeyControllerEvent) => void),
         callback?: (e: KeyControllerEvent) => void,
     ) {
+        let name: string = type;
         if (isArray(comb)) {
-            this.on(`${type}.${getArrangeCombi(comb).join(".")}`, callback);
+            name = `${type}.${getArrangeCombi(comb).join(".")}`;
         } else if (isString(comb)) {
-            this.on(`${type}.${comb}`, callback);
-        } else {
-            this.on(`${type}`, callback);
+            name = `${type}.${comb}`;
         }
+        this.on(name, callback);
         return this;
     }
     private triggerEvent(type: "keydown" | "keyup", e: KeyboardEvent) {
@@ -126,6 +126,6 @@ export class KeyController extends Component {
     }
 }
 
-export default function keycon() {
-    return new KeyController();
+export default function keycon(container?: Window | Document | HTMLElement) {
+    return new KeyController(container);
 }
