@@ -1,7 +1,16 @@
 <script src="../dist/keycon.pkgd.js"></script>
 <script>
-new keycon().keydown("s", e => {
-    console.log(e);
+keycon().keydown("s", e => {
+    // console.log(e);
+});
+keycon().keydown(["shift", "s"], e => {
+    // console.log(["shift", "s"]);
+});
+keycon().keydown(["s", "shift"], e => {
+    // console.log(["s", "shift"]);
+});
+keycon().keyup(["s", "shift"], e => {
+    console.log(["s", "shift"], e.shiftKey);
 });
 
 </script>

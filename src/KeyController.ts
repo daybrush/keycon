@@ -1,11 +1,17 @@
 import Component from "@egjs/component";
 import { names } from "keycode";
-import { isString } from "@daybrush/utils";
+import { isString, isArray, addEvent } from "@daybrush/utils";
 
 const codeData = {
     "+": "plus",
     "left command": "meta",
     "right command": "meta",
+};
+const keysSort = {
+    shift: 1,
+    ctrl: 2,
+    alt: 3,
+    meta: 4,
 };
 function getKey(keyCode: number) {
     let key = names[keyCode] || "";
@@ -13,8 +19,24 @@ function getKey(keyCode: number) {
     for (const name in codeData) {
         key = key.replace(name, codeData[name]);
     }
-
     return key.replace(/\s/g, "");
+}
+function getCombi(e: KeyboardEvent, key: string) {
+    const keys = [e.shiftKey && "shift", e.ctrlKey && "ctrl", e.altKey && "alt", e.metaKey && "meta"];
+    keys.indexOf(key) === -1 && keys.push(key);
+
+    return keys.filter(Boolean);
+}
+function getArrangeCombi(keys: string[]) {
+    const arrangeKeys = keys.slice();
+    arrangeKeys.sort((prev, next) => {
+        const prevScore = keysSort[prev] || 5;
+        const nextScore = keysSort[next] || 5;
+
+        return prevScore - nextScore;
+    });
+
+    return arrangeKeys;
 }
 export interface KeyControllerEvent {
     inputEvent: KeyboardEvent;
@@ -26,37 +48,59 @@ export interface KeyControllerEvent {
     metaKey: boolean;
 }
 export class KeyController extends Component {
+    public ctrlKey = false;
+    public altKey = false;
+    public shiftKey = false;
+    public metaKey = false;
     constructor(container: Window | Document | HTMLElement = window) {
         super();
 
-        container.addEventListener("keydown", this.keydownEvent);
-        container.addEventListener("keyup", this.keyupEvent);
+        addEvent(container, "blur", this.clear);
+        addEvent(container, "keydown", this.keydownEvent);
+        addEvent(container, "keyup", this.keyupEvent);
     }
-    public keydown(comb: string, callback: (e: KeyControllerEvent) => void): this;
+    public clear = () => {
+        this.ctrlKey = false;
+        this.altKey = false;
+        this.shiftKey = false;
+        this.metaKey = false;
+    }
+    public keydown(comb: string | string[], callback: (e: KeyControllerEvent) => void): this;
     public keydown(callback: (e: KeyControllerEvent) => void): this;
     public keydown(
-        comb: string | ((e: KeyControllerEvent) => void),
+        comb: string | string[] | ((e: KeyControllerEvent) => void),
         callback?: (e: KeyControllerEvent) => void,
     ) {
-        if (isString(comb)) {
-            return this.on(`keydown.${comb}`, callback);
-        } else {
-            return this.on(`keydown`, callback);
-        }
+        return this.addEvent("keydown", comb, callback);
     }
-    public keyup(comb: string, callback: (e: KeyControllerEvent) => void): this;
+    public keyup(comb: string | string[], callback: (e: KeyControllerEvent) => void): this;
     public keyup(callback: (e: KeyControllerEvent) => void): this;
     public keyup(
-        comb: string | ((e: KeyControllerEvent) => void),
+        comb: string | string[] | ((e: KeyControllerEvent) => void),
         callback?: (e: KeyControllerEvent) => void,
     ) {
-        if (typeof comb === "string") {
-            return this.on(`keyup.${comb}`, callback);
+        return this.addEvent("keyup", comb, callback);
+    }
+    private addEvent(
+        type: "keydown" | "keyup",
+        comb: string | string[] | ((e: KeyControllerEvent) => void),
+        callback?: (e: KeyControllerEvent) => void,
+    ) {
+        if (isArray(comb)) {
+            this.on(`${type}.${getArrangeCombi(comb).join(".")}`, callback);
+        } else if (isString(comb)) {
+            this.on(`${type}.${comb}`, callback);
         } else {
-            return this.on(`keyup`, callback);
+            this.on(`${type}`, callback);
         }
+        return this;
     }
     private triggerEvent(type: "keydown" | "keyup", e: KeyboardEvent) {
+        this.ctrlKey = e.ctrlKey;
+        this.shiftKey = e.shiftKey;
+        this.altKey = e.altKey;
+        this.metaKey = e.metaKey;
+
         const key = getKey(e.keyCode);
         const param: KeyControllerEvent = {
             key,
@@ -69,6 +113,10 @@ export class KeyController extends Component {
         };
         this.trigger(type, param);
         this.trigger(`${type}.${key}`, param);
+
+        const combi = getCombi(e, key);
+
+        combi.length > 1 && this.trigger(`${type}.${combi.join(".")}`, param);
     }
     private keydownEvent = (e: KeyboardEvent) => {
         this.triggerEvent("keydown", e);
