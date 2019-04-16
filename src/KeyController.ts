@@ -44,6 +44,7 @@ function getArrangeCombi(keys: string[]) {
  */
 export interface KeyControllerEvent {
     inputEvent: KeyboardEvent;
+    isToggle: boolean;
     key: string;
     keyCode: number;
     ctrlKey: boolean;
@@ -127,8 +128,13 @@ class KeyController extends Component {
         this.metaKey = e.metaKey;
 
         const key = getKey(e.keyCode);
+        const isToggle = key === "ctrl"
+            || key === "shift"
+            || key === "meta"
+            || key === "alt";
         const param: KeyControllerEvent = {
             key,
+            isToggle,
             inputEvent: e,
             keyCode: e.keyCode,
             ctrlKey: e.ctrlKey,
