@@ -111,13 +111,13 @@ class KeyController extends Component {
         comb: string | string[] | ((e: KeyControllerEvent) => void),
         callback?: (e: KeyControllerEvent) => void,
     ) {
-        let name: string = type;
         if (isArray(comb)) {
-            name = `${type}.${getArrangeCombi(comb).join(".")}`;
+            this.on(`${type}.${getArrangeCombi(comb).join(".")}`, callback);
         } else if (isString(comb)) {
-            name = `${type}.${comb}`;
+            this.on(`${type}.${comb}`, callback);
+        } else {
+            this.on(type, comb);
         }
-        this.on(name, callback);
         return this;
     }
     private triggerEvent(type: "keydown" | "keyup", e: KeyboardEvent) {
