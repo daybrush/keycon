@@ -13,7 +13,10 @@ const keysSort = {
     alt: 3,
     meta: 4,
 };
-function getKey(keyCode: number) {
+/**
+ * @memberof KeyController
+ */
+export function getKey(keyCode: number): string {
     let key = names[keyCode] || "";
 
     for (const name in codeData) {
@@ -21,12 +24,17 @@ function getKey(keyCode: number) {
     }
     return key.replace(/\s/g, "");
 }
-function getCombi(e: KeyboardEvent, key: string) {
+
+/**
+ * @memberof KeyController
+ */
+export function getCombi(e: KeyboardEvent, key: string = getKey(e.keyCode)): string[] {
     const keys = [e.shiftKey && "shift", e.ctrlKey && "ctrl", e.altKey && "alt", e.metaKey && "meta"];
     keys.indexOf(key) === -1 && keys.push(key);
 
     return keys.filter(Boolean);
 }
+
 function getArrangeCombi(keys: string[]) {
     const arrangeKeys = keys.slice();
     arrangeKeys.sort((prev, next) => {
@@ -79,11 +87,12 @@ class KeyController extends Component {
         addEvent(container, "keydown", this.keydownEvent);
         addEvent(container, "keyup", this.keyupEvent);
     }
-    public clear = () => {
+    public clear = (): this => {
         this.ctrlKey = false;
         this.altKey = false;
         this.shiftKey = false;
         this.metaKey = false;
+        return this;
     }
     public keydown(comb: string | string[], callback: (e: KeyControllerEvent) => void): this;
     public keydown(callback: (e: KeyControllerEvent) => void): this;
@@ -93,7 +102,7 @@ class KeyController extends Component {
     public keydown(
         comb: string | string[] | ((e: KeyControllerEvent) => void),
         callback?: (e: KeyControllerEvent) => void,
-    ) {
+    ): this {
         return this.addEvent("keydown", comb, callback);
     }
     public keyup(comb: string | string[], callback: (e: KeyControllerEvent) => void): this;
@@ -104,7 +113,7 @@ class KeyController extends Component {
     public keyup(
         comb: string | string[] | ((e: KeyControllerEvent) => void),
         callback?: (e: KeyControllerEvent) => void,
-    ) {
+    ): this {
         return this.addEvent("keyup", comb, callback);
     }
     private addEvent(

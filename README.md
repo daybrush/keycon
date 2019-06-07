@@ -17,7 +17,7 @@ npm i keycon
 ## How to use
 
 ```js
-import KeyController from "keycon";
+import KeyController, { getCombi, getKey } from "keycon";
 
 const keycon = new KeyController();
 
@@ -31,6 +31,11 @@ keycon.keydown("space", e => {
 });
 // keydown alt + space combination
 keycon.keydown(["alt", "space"], e => {
+    // ["alt", "space"]
+    console.log(getCombi(e));
+    // "space"
+    console.log(getKey(e.keyCode));
+
     console.log(e);
 });
 
