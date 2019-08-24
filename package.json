@@ -1,6 +1,6 @@
 {
   "name": "keycon",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Keyboard Controller",
   "main": "./dist/keycon.js",
   "module": "./dist/keycon.esm.js",

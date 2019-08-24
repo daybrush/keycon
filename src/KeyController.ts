@@ -60,9 +60,16 @@ export interface KeyControllerEvent {
     shiftKey: boolean;
     metaKey: boolean;
 }
+let globalKeyController!: KeyController;
+
 /**
  */
 class KeyController extends Component {
+    /**
+     */
+    public static get global() {
+        return globalKeyController || (globalKeyController = new KeyController());
+    }
     /**
      */
     public ctrlKey = false;
