@@ -112,6 +112,28 @@ class KeyController extends Component {
     ): this {
         return this.addEvent("keydown", comb, callback);
     }
+    public offKeydown(comb: string | string[], callback?: (e: KeyControllerEvent) => void): this;
+    public offKeydown(callback: (e: KeyControllerEvent) => void): this;
+    /**
+     *
+     */
+    public offKeydown(
+        comb: string | string[] | ((e: KeyControllerEvent) => void),
+        callback?: (e: KeyControllerEvent) => void,
+    ): this {
+        return this.removeEvent("keydown", comb, callback);
+    }
+    public offKeyup(comb: string | string[], callback?: (e: KeyControllerEvent) => void): this;
+    public offKeyup(callback: (e: KeyControllerEvent) => void): this;
+    /**
+     *
+     */
+    public offKeyup(
+        comb: string | string[] | ((e: KeyControllerEvent) => void),
+        callback?: (e: KeyControllerEvent) => void,
+    ): this {
+        return this.removeEvent("keyup", comb, callback);
+    }
     public keyup(comb: string | string[], callback: (e: KeyControllerEvent) => void): this;
     public keyup(callback: (e: KeyControllerEvent) => void): this;
     /**
@@ -134,6 +156,20 @@ class KeyController extends Component {
             this.on(`${type}.${comb}`, callback);
         } else {
             this.on(type, comb);
+        }
+        return this;
+    }
+    private removeEvent(
+        type: "keydown" | "keyup",
+        comb: string | string[] | ((e: KeyControllerEvent) => void) | undefined,
+        callback?: (e: KeyControllerEvent) => void,
+    ) {
+        if (isArray(comb)) {
+            this.off(`${type}.${getArrangeCombi(comb).join(".")}`, callback);
+        } else if (isString(comb)) {
+            this.off(`${type}.${comb}`, callback);
+        } else {
+            this.off(type, comb);
         }
         return this;
     }
