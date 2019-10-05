@@ -70,6 +70,9 @@ class KeyController extends Component {
     public static get global() {
         return globalKeyController || (globalKeyController = new KeyController());
     }
+    public static setGlobal() {
+        return this.global;
+    }
     /**
      */
     public ctrlKey = false;
