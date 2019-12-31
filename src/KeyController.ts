@@ -1,6 +1,6 @@
 import Component from "@egjs/component";
 import { names } from "keycode";
-import { isString, isArray, addEvent } from "@daybrush/utils";
+import { isString, isArray, addEvent, removeEvent } from "@daybrush/utils";
 
 const codeData = {
     "+": "plus",
@@ -90,7 +90,7 @@ class KeyController extends Component {
     /**
      *
      */
-    constructor(container: Window | Document | HTMLElement = window) {
+    constructor(private container: Window | Document | HTMLElement = window) {
         super();
 
         addEvent(container, "blur", this.clear);
@@ -103,6 +103,18 @@ class KeyController extends Component {
         this.shiftKey = false;
         this.metaKey = false;
         return this;
+    }
+    /**
+     *
+     */
+    public destory() {
+        const container = this.container as any;
+
+        this.clear();
+        this.off();
+        removeEvent(container, "blur", this.clear);
+        removeEvent(container, "keydown", this.keydownEvent);
+        removeEvent(container, "keyup", this.keyupEvent);
     }
     public keydown(comb: string | string[], callback: (e: KeyControllerEvent) => void): this;
     public keydown(callback: (e: KeyControllerEvent) => void): this;
