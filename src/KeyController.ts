@@ -107,7 +107,7 @@ class KeyController extends Component {
     /**
      *
      */
-    public destory() {
+    public destroy() {
         const container = this.container as any;
 
         this.clear();
