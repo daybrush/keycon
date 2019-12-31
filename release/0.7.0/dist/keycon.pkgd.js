@@ -4,7 +4,7 @@ name: keycon
 license: MIT
 author: Daybrush
 repository: git+https://github.com/daybrush/keycon.git
-version: 0.7.1
+version: 0.7.0
 */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -535,7 +535,7 @@ version: 0.7.1
     license: MIT
     author: Daybrush
     repository: https://github.com/daybrush/utils
-    @version 0.10.1
+    @version 0.10.0
     */
     /**
     * get string "string"
@@ -747,7 +747,7 @@ version: 0.7.1
        */
 
 
-      __proto.destroy = function () {
+      __proto.destory = function () {
         var container = this.container;
         this.clear();
         this.off();

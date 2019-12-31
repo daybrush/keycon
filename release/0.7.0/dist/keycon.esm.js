@@ -4,7 +4,7 @@ name: keycon
 license: MIT
 author: Daybrush
 repository: git+https://github.com/daybrush/keycon.git
-version: 0.7.1
+version: 0.7.0
 */
 import Component from '@egjs/component';
 
@@ -241,7 +241,7 @@ Copyright (c) 2018 Daybrush
 license: MIT
 author: Daybrush
 repository: https://github.com/daybrush/utils
-@version 0.10.1
+@version 0.10.0
 */
 /**
 * get string "string"
@@ -453,7 +453,7 @@ function (_super) {
    */
 
 
-  __proto.destroy = function () {
+  __proto.destory = function () {
     var container = this.container;
     this.clear();
     this.off();
