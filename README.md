@@ -21,6 +21,10 @@ import KeyController, { getCombi, getKey } from "keycon";
 
 const keycon = new KeyController();
 
+// The focus went out of the browser.
+keycon.on("blur", () => {
+    console.log("blur");
+});
 // keydown all
 keycon.keydown(e => {
     console.log(e);

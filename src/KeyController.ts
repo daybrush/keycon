@@ -93,7 +93,7 @@ class KeyController extends Component {
     constructor(private container: Window | Document | HTMLElement = window) {
         super();
 
-        addEvent(container, "blur", this.clear);
+        addEvent(container, "blur", this.blur);
         addEvent(container, "keydown", this.keydownEvent);
         addEvent(container, "keyup", this.keyupEvent);
     }
@@ -112,7 +112,7 @@ class KeyController extends Component {
 
         this.clear();
         this.off();
-        removeEvent(container, "blur", this.clear);
+        removeEvent(container, "blur", this.blur);
         removeEvent(container, "keydown", this.keydownEvent);
         removeEvent(container, "keyup", this.keyupEvent);
     }
@@ -221,6 +221,10 @@ class KeyController extends Component {
     }
     private keyupEvent = (e: KeyboardEvent) => {
         this.triggerEvent("keyup", e);
+    }
+    private blur = () => {
+        this.clear();
+        this.trigger("blur");
     }
 }
 
