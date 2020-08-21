@@ -1,6 +1,6 @@
 {
   "name": "keycon",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "description": "Keyboard Controller",
   "main": "./dist/keycon.js",
   "module": "./dist/keycon.esm.js",
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/daybrush/keycon#readme",
   "dependencies": {
-    "@daybrush/utils": "^0.10.1",
+    "@daybrush/utils": "^1.0.0",
     "@egjs/component": "^2.1.2",
     "keycode": "^2.2.0"
   },
