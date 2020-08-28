@@ -29,8 +29,17 @@ export function getKey(keyCode: number): string {
  * @memberof KeyController
  */
 export function getCombi(e: KeyboardEvent, key: string = getKey(e.keyCode)): string[] {
-    const keys = [e.shiftKey && "shift", e.ctrlKey && "ctrl", e.altKey && "alt", e.metaKey && "meta"];
+    const keys = getModifierCombi(e);
     keys.indexOf(key) === -1 && keys.push(key);
+
+    return keys.filter(Boolean);
+}
+
+/**
+ * @memberof KeyController
+ */
+export function getModifierCombi(e: KeyboardEvent): string[] {
+    const keys = [e.shiftKey && "shift", e.ctrlKey && "ctrl", e.altKey && "alt", e.metaKey && "meta"];
 
     return keys.filter(Boolean);
 }
