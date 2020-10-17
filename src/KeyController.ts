@@ -1,4 +1,4 @@
-import Component from "@egjs/component";
+import EventEmitter, { EmitterParam, TargetParam } from "@scena/event-emitter";
 import { names } from "keycode";
 import { isString, isArray, addEvent, removeEvent } from "@daybrush/utils";
 
@@ -59,7 +59,7 @@ function getArrangeCombi(keys: string[]) {
  * @typedef
  * @memberof KeyController
  */
-export interface KeyControllerEvent {
+export interface KeyControllerEvent extends EmitterParam {
     inputEvent: KeyboardEvent;
     isToggle: boolean;
     key: string;
@@ -73,7 +73,10 @@ let globalKeyController!: KeyController;
 
 /**
  */
-class KeyController extends Component {
+class KeyController extends EventEmitter<{
+    blur: {},
+    [key: string]: object,
+}> {
     /**
      */
     public static get global() {
@@ -208,7 +211,7 @@ class KeyController extends Component {
             || key === "shift"
             || key === "meta"
             || key === "alt";
-        const param: KeyControllerEvent = {
+        const param: TargetParam<KeyControllerEvent> = {
             key,
             isToggle,
             inputEvent: e,
