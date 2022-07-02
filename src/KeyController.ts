@@ -16,8 +16,8 @@ const keysSort = {
 /**
  * @memberof KeyController
  */
-export function getKey(keyCode: number): string {
-    let key = names[keyCode] || "";
+export function getKey(keyCode: number, keyName?: string): string {
+    let key = (names[keyCode] || keyName || "").toLowerCase();
 
     for (const name in codeData) {
         key = key.replace(name, codeData[name]);
@@ -28,7 +28,7 @@ export function getKey(keyCode: number): string {
 /**
  * @memberof KeyController
  */
-export function getCombi(e: KeyboardEvent, key: string = getKey(e.keyCode)): string[] {
+export function getCombi(e: KeyboardEvent, key: string = getKey(e.keyCode, e.key)): string[] {
     const keys = getModifierCombi(e);
     keys.indexOf(key) === -1 && keys.push(key);
 
@@ -206,7 +206,7 @@ class KeyController extends EventEmitter<{
         this.altKey = e.altKey;
         this.metaKey = e.metaKey;
 
-        const key = getKey(e.keyCode);
+        const key = getKey(e.keyCode, e.key);
         const isToggle = key === "ctrl"
             || key === "shift"
             || key === "meta"
