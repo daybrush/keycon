@@ -1,0 +1,68 @@
+{
+  "name": "react-keycon",
+  "version": "0.1.0",
+  "description": "React Key Controller Hooks Component",
+  "main": "dist/keycon.cjs.js",
+  "module": "dist/keycon.esm.js",
+  "types": "declaration/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "keywords": [
+    "key",
+    "keycode",
+    "keyboard",
+    "component",
+    "esm"
+  ],
+  "devDependencies": {
+    "@daybrush/builder": "^0.1.1",
+    "@daybrush/release": "^0.5.3",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.45",
+    "@types/react-dom": "^17.0.2",
+    "print-sizes": "^0.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daybrush/keycon"
+  },
+  "author": {
+    "name": "Daybrush"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "rollup -c && npm run declaration && print-sizes ./dist",
+    "declaration": "rm -rf declaration && tsc -p tsconfig.declaration.json"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@cfcs/core": "^0.0.4",
+    "@cfcs/react": "^0.0.4",
+    "keycon": "~1.2.0"
+  }
+}
