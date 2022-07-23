@@ -16,7 +16,6 @@
   ],
   "devDependencies": {
     "@daybrush/builder": "^0.1.1",
-    "@daybrush/release": "^0.5.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -63,6 +62,6 @@
   "dependencies": {
     "@cfcs/core": "^0.0.4",
     "@cfcs/react": "^0.0.4",
-    "keycon": "~1.2.0"
+    "keycon": "~1.2.1"
   }
 }

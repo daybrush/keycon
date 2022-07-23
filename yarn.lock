@@ -1160,7 +1160,7 @@
     taffydb "2.6.2"
     underscore "~1.8.3"
 
-"@daybrush/jsdoc@^0.4.0":
+"@daybrush/jsdoc@^0.4.0", "@daybrush/jsdoc@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@daybrush/jsdoc/-/jsdoc-0.4.1.tgz#1acf5f4b7d5cf4790e80aa8e4382e4a67a1ee1f2"
   integrity sha512-BBsNgR4WImtaAByEDfLfdNkD5/wWO7bqx2uJnPg9mKG1WUZkjFGA1DqYeWG+02VqVm65VNNQgH+KSLUtYaiUiw==
@@ -5363,7 +5363,7 @@ dateformat@^3.0.0:
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
 
-daybrush-jsdoc-template@^1.5.3:
+daybrush-jsdoc-template@^1.5.3, daybrush-jsdoc-template@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/daybrush-jsdoc-template/-/daybrush-jsdoc-template-1.7.0.tgz#49a83e5a013e649fd4d09e52521e6193de2dcd7a"
   integrity sha512-+R+37tg0etaaWqMP+z5mGMdt7432riKh1jMo2SYZnUMhk0KMEmoXUC4JzwF1sKQtmWojLBQZ7Z2zfbsVA2tBjQ==

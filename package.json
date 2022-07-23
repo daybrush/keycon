@@ -7,9 +7,7 @@
         "packages:build": "npm run build --prefix packages/keycon && lerna run build --ignore keycon --ignore docs --stream",
         "packages:publish": "lerna-helper publish --commit 'chore: update packages versions'",
         "changelog": "lerna-helper changelog --type all --base keycon",
-        "docs:build": "jsdoc-to-mdx -c ./jsdoc-to-mdx.json",
-        "docs:version": "node ./config/docs-version-up",
-        "demo:build": "npm run docs:build && npm run docs:version && npm run build --prefix packages/docs",
+        "doc": "rm -rf ./doc && jsdoc -c jsdoc.json",
         "demo:deploy": "lerna-helper deploy --base keycon --remote master",
         "release": "lerna-helper release --base keycon --remote origin --branch master"
     },
@@ -24,6 +22,9 @@
     },
     "homepage": "https://daybrush.com/keycon/",
     "devDependencies": {
+        "@daybrush/jsdoc": "^0.4.1",
+        "@daybrush/release": "^0.5.3",
+        "daybrush-jsdoc-template": "^1.7.0",
         "lerna": "^4.0.0"
     },
     "workspaces": {

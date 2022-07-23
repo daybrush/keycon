@@ -1,6 +1,6 @@
 {
   "name": "keycon",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Keyboard Controller",
   "main": "./dist/keycon.js",
   "module": "./dist/keycon.esm.js",
@@ -16,10 +16,7 @@
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c && npm run declaration && print-sizes ./dist ",
-    "declaration": "rm -rf declaration && tsc -p tsconfig.declaration.json",
-    "doc": "rm -rf ./doc && jsdoc -c jsdoc.json",
-    "release": "npm run build && npm run doc && release --dirs dist,doc",
-    "release:init": "npm run build && npm run doc && release -i --dirs dist,doc"
+    "declaration": "rm -rf declaration && tsc -p tsconfig.declaration.json"
   },
   "repository": {
     "type": "git",
@@ -39,7 +36,6 @@
   "devDependencies": {
     "@daybrush/builder": "^0.1.1",
     "@daybrush/jsdoc": "^0.3.7",
-    "@daybrush/release": "^0.2.4",
     "daybrush-jsdoc-template": "^1.5.3",
     "print-sizes": "^0.1.0",
     "tslint": "^5.20.1",

@@ -1,11 +1,3 @@
-
-// conveyer.js
-// conveyer.min.js
-// conveyer.pkgd.js
-// conveyer.pkgd.min.js
-// conveyer.esm.js
-
-
 const buildHelper = require("@daybrush/builder");
 
 export default buildHelper([
