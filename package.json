@@ -8,7 +8,7 @@
         "packages:publish": "lerna-helper publish --commit 'chore: update packages versions'",
         "changelog": "lerna-helper changelog --type all --base keycon",
         "doc": "rm -rf ./doc && jsdoc -c jsdoc.json",
-        "demo:deploy": "lerna-helper deploy --base keycon --remote master",
+        "deploy": "lerna-helper deploy --base keycon --remote master",
         "release": "lerna-helper release --base keycon --remote origin --branch master"
     },
     "repository": {
