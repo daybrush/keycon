@@ -1,48 +1,34 @@
 {
-  "name": "keycon",
-  "version": "1.2.0",
-  "description": "Keyboard Controller",
-  "main": "./dist/keycon.js",
-  "module": "./dist/keycon.esm.js",
-  "sideEffects": false,
-  "types": "declaration/KeyController.d.ts",
-  "keywords": [
-    "key",
-    "keycode",
-    "keyboard",
-    "component",
-    "esm"
-  ],
-  "scripts": {
-    "start": "rollup -c -w",
-    "build": "rollup -c && npm run declaration && print-sizes ./dist ",
-    "declaration": "rm -rf declaration && tsc -p tsconfig.declaration.json",
-    "doc": "rm -rf ./doc && jsdoc -c jsdoc.json",
-    "release": "npm run build && npm run doc && release --dirs dist,doc",
-    "release:init": "npm run build && npm run doc && release -i --dirs dist,doc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/daybrush/keycon.git"
-  },
-  "author": "Daybrush",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/daybrush/keycon/issues"
-  },
-  "homepage": "https://github.com/daybrush/keycon#readme",
-  "dependencies": {
-    "@daybrush/utils": "^1.7.1",
-    "@scena/event-emitter": "^1.0.2",
-    "keycode": "^2.2.0"
-  },
-  "devDependencies": {
-    "@daybrush/builder": "^0.1.1",
-    "@daybrush/jsdoc": "^0.3.7",
-    "@daybrush/release": "^0.2.4",
-    "daybrush-jsdoc-template": "^1.5.3",
-    "print-sizes": "^0.1.0",
-    "tslint": "^5.20.1",
-    "typescript": "^3.4.3"
-  }
+    "name": "root",
+    "private": true,
+    "scripts": {
+        "packages": "npm run packages:update && npm run packages:build && npm run packages:publish",
+        "packages:update": "lerna-helper version",
+        "packages:build": "npm run build --prefix packages/keycon && lerna run build --ignore keycon --ignore docs --stream",
+        "packages:publish": "lerna-helper publish --commit 'chore: update packages versions'",
+        "changelog": "lerna-helper changelog --type all --base keycon",
+        "docs:build": "jsdoc-to-mdx -c ./jsdoc-to-mdx.json",
+        "docs:version": "node ./config/docs-version-up",
+        "demo:build": "npm run docs:build && npm run docs:version && npm run build --prefix packages/docs",
+        "demo:deploy": "lerna-helper deploy --base keycon --remote master",
+        "release": "lerna-helper release --base keycon --remote origin --branch master"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/daybrush/keycon.git"
+    },
+    "author": "Daybrush",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/daybrush/keycon/issues"
+    },
+    "homepage": "https://daybrush.com/keycon/",
+    "devDependencies": {
+        "lerna": "^4.0.0"
+    },
+    "workspaces": {
+        "packages": [
+            "packages/*"
+        ]
+    }
 }
