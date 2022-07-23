@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/daybrush/keycon/compare/1.2.1...1.2.2) (2022-07-23)
+### :sparkles: Packages
+* `keycon` 1.2.2
+* `react-keycon` 0.1.2
+
+
+### :bug: Bug Fix
+
+* All
+    * add files field ([b8592ae](https://github.com/daybrush/keycon/commit/b8592ae169b8e7fd627551eaabcce81ec2bf4867))
+
+
+### :memo: Documentation
+
+* fix README ([e78e48c](https://github.com/daybrush/keycon/commit/e78e48c02716380d52bea43110a62814b4c20181))
+
+
+
 ## [1.2.1](https://github.com/daybrush/keycon/compare/1.2.0...1.2.1) (2022-07-23)
 ### :sparkles: Packages
 * `keycon` 1.2.1
