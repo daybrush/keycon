@@ -1183,15 +1183,6 @@
     taffydb "2.6.2"
     underscore "~1.8.3"
 
-"@daybrush/release@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@daybrush/release/-/release-0.2.4.tgz#8c1c883cbec7de76a3df54899c6d95db2ce85eea"
-  integrity sha512-SgCvcKBP/FCNWwONpKYGHjbNHNFesbBLF6Wc/RdP8OJeF39/yXa8AWu776Zq/jfOVpOMV9UoheC6h4mbD5XxCA==
-  dependencies:
-    args "^5.0.1"
-    gh-pages "^2.0.1"
-    sync-exec "^0.6.2"
-
 "@daybrush/release@^0.5.3":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@daybrush/release/-/release-0.5.3.tgz#336ba0890a76d26305b21262e6a2f1af26487dfd"

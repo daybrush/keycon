@@ -1,6 +1,6 @@
 {
     "name": "react-keycon",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "React Key Controller Hooks Component",
     "main": "dist/keycon.cjs.js",
     "module": "dist/keycon.esm.js",

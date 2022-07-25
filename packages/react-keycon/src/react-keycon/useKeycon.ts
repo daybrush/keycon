@@ -22,6 +22,9 @@ export function useKeycon(props: KeyControllerOptions) {
             keycon.keyup(props.keys, () => {
                 isKeydown.current = false;
             });
+            keycon.on("blur", () => {
+                isKeydown.current = false;
+            });
 
             return reactive({
                 inst: keycon,
