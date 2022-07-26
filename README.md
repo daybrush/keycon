@@ -5,7 +5,7 @@ Keyboard Controller
 * [API Documentation](https://daybrush.com/keycon/release/latest/doc/)
 
 
-* [React][https://github.com/daybrush/keycon/tree/master/packages/react-keycon]
+* [React](https://github.com/daybrush/keycon/tree/master/packages/react-keycon)
 ## Installation
 ```
 npm i keycon
