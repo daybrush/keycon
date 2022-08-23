@@ -7,37 +7,27 @@ export default builder([
         output: "./dist/keycon.js",
         resolve: true,
         commonjs: true,
-        external: {
-            "@daybrush/utils": "utils",
-            "@egjs/component": "eg.Component",
-        },
     },
     {
         name: "keycon",
         input: "src/index.umd.ts",
-        output: "./dist/keycon.js",
-        resolve: true,
-        commonjs: true,
-        uglify: true,
-        external: {
-            "@daybrush/utils": "utils",
-            "@egjs/component": "eg.Component",
-        },
-    },
-    {
-        name: "keycon",
-        input: "src/index.umd.ts",
-        output: "./dist/keycon.pkgd.js",
-        resolve: true,
-        commonjs: true,
-    },
-    {
-        name: "keycon",
-        input: "src/index.umd.ts",
-        output: "./dist/keycon.pkgd.min.js",
+        output: "./dist/keycon.min.js",
         resolve: true,
         uglify: true,
         commonjs: true,
+    },
+    {
+        name: "keycon",
+        input: "src/index.cjs.ts",
+        output: "./dist/keycon.cjs.js",
+        resolve: true,
+        commonjs: true,
+        exports: "named",
+        format: "cjs",
+        external: {
+            "@daybrush/utils": "@daybrush/utils",
+            "@scena/event-emitter": "@scena/event-emitter",
+        },
     },
     {
         name: "keycon",
@@ -48,7 +38,8 @@ export default builder([
         resolve: true,
         commonjs: true,
         external: {
-            "@egjs/component": "eg.Component",
+            "@daybrush/utils": "@daybrush/utils",
+            "@scena/event-emitter": "@scena/event-emitter",
         },
     },
 ]);

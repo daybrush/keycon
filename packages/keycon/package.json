@@ -2,7 +2,7 @@
     "name": "keycon",
     "version": "1.2.2",
     "description": "Keyboard Controller",
-    "main": "./dist/keycon.js",
+    "main": "./dist/keycon.cjs.js",
     "module": "./dist/keycon.esm.js",
     "sideEffects": false,
     "types": "declaration/KeyController.d.ts",
@@ -14,7 +14,8 @@
         "esm"
     ],
     "files": [
-        "./*"
+        "./*",
+        "./dist/*"
     ],
     "scripts": {
         "start": "rollup -c -w",

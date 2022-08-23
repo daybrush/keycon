@@ -10,7 +10,7 @@ Keyboard Controller
 npm i keycon
 ```
 ```html
-<script src="https://daybrush.com/keycon/release/latest/dist/keycon.pkgd.min.js"></script>
+<script src="https://daybrush.com/keycon/release/latest/dist/keycon.min.js"></script>
 ```
 
 
