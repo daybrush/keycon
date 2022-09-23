@@ -1,0 +1,53 @@
+{
+    "name": "vue-keycon",
+    "version": "0.0.1",
+    "description": "Vue 3 Key Controller Hooks Component",
+    "main": "dist/keycon.cjs.js",
+    "module": "dist/keycon.esm.js",
+    "types": "declaration/index.d.ts",
+    "sideEffects": false,
+    "license": "MIT",
+    "keywords": [
+        "key",
+        "keycode",
+        "keyboard",
+        "component",
+        "esm",
+        "vue",
+        "vue3",
+        "hooks"
+    ],
+    "scripts": {
+        "serve": "vue-cli-service serve demo",
+        "build": "rm -rf dist && rollup -c && npm run declaration",
+        "declaration": "rm -rf declaration && tsc -p tsconfig.declaration.json",
+        "lint": "vue-cli-service lint --no-fix"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/daybrush/keycon/blob/master/packages/vue-keycon"
+    },
+    "author": "Daybrush",
+    "bugs": {
+        "url": "https://github.com/daybrush/keycon/issues"
+    },
+    "homepage": "https://github.com/daybrush/keycon",
+    "files": [
+        "./*",
+        "dist/*"
+    ],
+    "dependencies": {
+        "keycon": "~1.2.2",
+        "@cfcs/vue3": "^0.0.4"
+    },
+    "devDependencies": {
+        "@daybrush/builder": "^0.1.2",
+        "@vue/cli-plugin-typescript": "~4.5.0",
+        "@vue/cli-service": "~4.5.0",
+        "@vue/compiler-sfc": "^3.0.0",
+        "rollup-plugin-vue": "^6.0.0",
+        "tslib": "^2.3.1",
+        "typescript": "^4.5.0",
+        "vue": "^3.1.1"
+    }
+}

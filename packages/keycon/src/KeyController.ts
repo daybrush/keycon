@@ -69,14 +69,26 @@ export interface KeyControllerEvent extends EmitterParam {
     shiftKey: boolean;
     metaKey: boolean;
 }
+
+export interface OnKeydown extends KeyControllerEvent {
+
+}
+export interface OnKeyup extends KeyControllerEvent {
+
+}
+export interface OnBlur {
+
+}
+export interface KeyconEvents {
+    keydown: OnKeydown;
+    keyup: OnKeyup;
+    blur: OnBlur;
+}
 let globalKeyController!: KeyController;
 
 /**
  */
-class KeyController extends EventEmitter<{
-    blur: {},
-    [key: string]: object,
-}> {
+class KeyController extends EventEmitter<KeyconEvents & { [text: string]: any }> {
     /**
      */
     public static get global() {

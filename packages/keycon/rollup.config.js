@@ -31,7 +31,7 @@ export default builder([
     },
     {
         name: "keycon",
-        input: "src/KeyController.ts",
+        input: "src/index.ts",
         output: "./dist/keycon.esm.js",
         exports: "named",
         format: "es",

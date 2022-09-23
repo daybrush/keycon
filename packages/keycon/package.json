@@ -5,7 +5,7 @@
     "main": "./dist/keycon.cjs.js",
     "module": "./dist/keycon.esm.js",
     "sideEffects": false,
-    "types": "declaration/KeyController.d.ts",
+    "types": "declaration/index.d.ts",
     "keywords": [
         "key",
         "keycode",
@@ -35,10 +35,11 @@
     "dependencies": {
         "@daybrush/utils": "^1.7.1",
         "@scena/event-emitter": "^1.0.2",
+        "@cfcs/core": "^0.0.4",
         "keycode": "^2.2.0"
     },
     "devDependencies": {
-        "@daybrush/builder": "^0.1.1",
+        "@daybrush/builder": "^0.1.2",
         "@daybrush/jsdoc": "^0.3.7",
         "daybrush-jsdoc-template": "^1.5.3",
         "print-sizes": "^0.1.0",
