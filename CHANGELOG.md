@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/daybrush/keycon/compare/1.2.2...1.3.0) (2022-09-24)
+### :sparkles: Packages
+* `keycon` 1.3.0
+* `react-keycon` 0.2.0
+* `vue-keycon` 0.1.0
+* `vue2-keycon` 0.1.0
+
+
+### :rocket: New Features
+
+* All
+    * add vue2 & vue3 keycon ([bac8a4d](https://github.com/daybrush/keycon/commit/bac8a4dbbb4aeb10a0ccb89a4a7858b7fb9b0ab5))
+
+
+### :bug: Bug Fix
+
+* `react-keycon`
+    * disable keydown on blur ([121f85a](https://github.com/daybrush/keycon/commit/121f85a1fab3281e7da6ae1ce25990317360cad3))
+* `keycon`
+    * fix commonjs config ([abbd4e3](https://github.com/daybrush/keycon/commit/abbd4e37dd7e9c70e9a870b636ccca5bd200f302))
+
+
+### :memo: Documentation
+
+* fix README ([0e67a30](https://github.com/daybrush/keycon/commit/0e67a308d3d1a055f47fb989e03582a4b50bd31a))
+
+
+### :mega: Other
+
+* All
+    * update packages versions ([94156a3](https://github.com/daybrush/keycon/commit/94156a3c54665c3ea4db2c3babcdaf8ad67bd3d9))
+
+
+
 ## [1.2.2](https://github.com/daybrush/keycon/compare/1.2.1...1.2.2) (2022-07-23)
 ### :sparkles: Packages
 * `keycon` 1.2.2
