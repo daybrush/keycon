@@ -63,7 +63,7 @@
         ]
     },
     "dependencies": {
-        "@cfcs/react": "^0.0.4",
+        "@cfcs/react": "^0.0.6",
         "keycon": "~1.3.0"
     }
 }

@@ -35,7 +35,7 @@
     "dependencies": {
         "@daybrush/utils": "^1.7.1",
         "@scena/event-emitter": "^1.0.2",
-        "@cfcs/core": "^0.0.4",
+        "@cfcs/core": "^0.0.6",
         "keycode": "^2.2.0"
     },
     "devDependencies": {

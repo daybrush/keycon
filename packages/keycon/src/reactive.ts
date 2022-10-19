@@ -2,7 +2,7 @@ import { ReactiveAdapter, reactive, Ref, observe, ReactiveObject, Observer } fro
 import KeyController, { KeyconEvents } from "./KeyController";
 
 export interface ReactiveKeyConData {
-    ref?: Ref<HTMLElement>;
+    ref?: Ref<HTMLElement | null | undefined>;
     keys: string | string[];
 }
 export type ReactiveKeyCon = ReactiveObject<{
@@ -10,6 +10,12 @@ export type ReactiveKeyCon = ReactiveObject<{
     keys: string | string[];
     isKeydown: Observer<boolean>;
     destroy(): void;
+}>;
+
+
+let instanceMap!: Map<HTMLElement | Window | Document, {
+    inst: KeyController;
+    count: number;
 }>;
 
 export const REACTIVE: ReactiveAdapter<
@@ -22,8 +28,25 @@ export const REACTIVE: ReactiveAdapter<
     events: ["keydown", "keyup", "blur"],
     state: { isKeydown : false },
     mounted(data) {
+        if (!instanceMap) {
+            instanceMap = new Map();
+        }
+        const element = data.ref?.current ?? window;
+
+        let info = instanceMap.get(element);
+
+        if (!info) {
+            info = {
+                inst: new KeyController(element),
+                count: 0,
+            };
+
+            instanceMap.set(element, info);
+        }
+        ++info.count;
+
+        const keycon = info.inst;
         const keys = data.keys;
-        const keycon = new KeyController(data.ref?.current ?? window);
         const isKeydown = observe(false);
 
         keycon.keydown(keys, () => {
@@ -43,8 +66,15 @@ export const REACTIVE: ReactiveAdapter<
             isKeydown,
         });
     },
-    destroy(inst) {
-        inst.destroy();
+    destroy({ inst }) {
+        const element = inst.container;
+        const info = instanceMap.get(element);
+
+        --info.count;
+        if (!info.count) {
+            inst.destroy();
+            instanceMap.delete(element);
+        }
     },
     on(inst, name, callback) {
         const keycon = inst.inst;

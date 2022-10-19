@@ -114,7 +114,7 @@ class KeyController extends EventEmitter<KeyconEvents & { [text: string]: any }>
     /**
      *
      */
-    constructor(private container: Window | Document | HTMLElement = window) {
+    constructor(public container: Window | Document | HTMLElement = window) {
         super();
 
         addEvent(container, "blur", this.blur);

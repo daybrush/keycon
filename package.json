@@ -62,8 +62,6 @@
         "@daybrush/utils": "^1.7.1",
         "@types/react": "^16.9.17",
         "typescript": "^4.5.0 <4.6.0",
-        "@egjs/agent": "^2.2.1",
-        "@egjs/children-differ": "^1.0.1",
         "@scena/dragscroll": "^1.2.0",
         "@scena/matrix": "^1.1.1",
         "css-to-mat": "^1.0.3",
@@ -72,14 +70,13 @@
         "overlap-area": "^1.1.0",
         "react-compat-css-styled": "^1.0.8",
         "react-css-styled": "^1.0.3",
-        "tslib": "^2.3.0"
+        "tslib": "^2.3.0",
+        "@cfcs/core": "^0.0.6"
     },
     "overrides": {
         "@daybrush/utils": "^1.7.1",
         "@types/react": "^16.9.17",
         "typescript": "^4.5.0 <4.6.0",
-        "@egjs/agent": "^2.2.1",
-        "@egjs/children-differ": "^1.0.1",
         "@scena/dragscroll": "^1.2.0",
         "@scena/matrix": "^1.1.1",
         "css-to-mat": "^1.0.3",
@@ -88,6 +85,7 @@
         "overlap-area": "^1.1.0",
         "react-compat-css-styled": "^1.0.8",
         "react-css-styled": "^1.0.3",
-        "tslib": "^2.3.0"
+        "tslib": "^2.3.0",
+        "@cfcs/core": "^0.0.6"
     }
 }

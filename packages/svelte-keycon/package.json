@@ -1,0 +1,66 @@
+{
+    "name": "svelte-keycon",
+    "version": "0.0.1",
+    "description": "Svelte Key Controller Reactive Component",
+    "main": "dist/keycon.cjs.js",
+    "module": "dist/keycon.esm.js",
+    "types": "declaration/index.d.ts",
+    "sideEffects": false,
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/daybrush/keycon/blob/master/packages/svelte-keycon"
+    },
+    "author": "Daybrush",
+    "bugs": {
+        "url": "https://github.com/daybrush/keycon/issues"
+    },
+    "homepage": "https://github.com/daybrush/keycon",
+    "files": [
+        "./*",
+        "dist/*"
+    ],
+    "keywords": [
+        "key",
+        "keycode",
+        "keyboard",
+        "component",
+        "esm",
+        "svelte",
+        "hooks"
+    ],
+    "scripts": {
+        "dev": "rollup -c -w",
+        "start": "sirv public --no-clear",
+        "build": "rollup -c rollup.build.config.js && npm run declaration",
+        "declaration": "rm -rf declaration && tsc -p tsconfig.declaration.json"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/preset-env": "^7.12.11",
+        "@daybrush/builder": "^0.1.2",
+        "@pyoner/svelte-ts-preprocess": "^1.2.1",
+        "@testing-library/jest-dom": "^5.11.8",
+        "@testing-library/svelte": "^3.0.3",
+        "@types/jest": "^26.0.19",
+        "babel-jest": "^26.6.3",
+        "jest": "^26.6.3",
+        "print-coveralls": "^1.2.2",
+        "rollup": "^1.12.0",
+        "rollup-plugin-css-only": "^3.1.0",
+        "rollup-plugin-livereload": "^1.0.0",
+        "rollup-plugin-svelte": "^7.0.0",
+        "rollup-plugin-terser": "^5.1.2",
+        "sirv-cli": "^0.4.4",
+        "svelte": "^3.31.0",
+        "svelte-jester": "^1.3.0",
+        "svelte-preprocess": "^4.6.1",
+        "ts-jest": "^26.4.4",
+        "tslib": "^1.10.0",
+        "typescript": "^4.1.6"
+    },
+    "dependencies": {
+        "@cfcs/svelte": "^0.0.6",
+        "keycon": "~1.3.0"
+    }
+}

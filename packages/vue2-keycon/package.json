@@ -37,7 +37,7 @@
         "dist/*"
     ],
     "dependencies": {
-        "@cfcs/vue2": "^0.0.4",
+        "@cfcs/vue2": "^0.0.6",
         "keycon": "~1.3.0"
     },
     "devDependencies": {

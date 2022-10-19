@@ -31,15 +31,15 @@ export default {
 
     onKeydown(() => {
       console.log("keydown");
-    }, []);
+    });
 
     onKeyup(() => {
       console.log("keyup");
-    }, []);
+    });
 
     onBlur(() => {
       console.log("blur");
-    }, []);
+    });
 
     return {
       isKeydown,
