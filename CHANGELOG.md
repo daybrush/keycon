@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/daybrush/keycon/compare/1.3.2...1.4.0) (2022-12-04)
+### :sparkles: Packages
+* `keycon` 1.4.0
+* `react-keycon` 0.3.0
+* `svelte-keycon` 0.2.0
+* `vue-keycon` 0.2.0
+* `vue2-keycon` 0.2.0
+
+
+### :rocket: New Features
+
+* All
+    * add checker option ([ca3ec3b](https://github.com/daybrush/keycon/commit/ca3ec3be8df6ce9d0efb4adbdd01a9e273af3a05))
+
+
+### :mega: Other
+
+* All
+    * update packages versions ([09cbc30](https://github.com/daybrush/keycon/commit/09cbc30b426fbb5acfeab77d2f6651dccb24eb1a))
+
+
+
 ## [1.3.2](https://github.com/daybrush/keycon/compare/1.3.0...1.3.2) (2022-10-19)
 ### :sparkles: Packages
 * `keycon` 1.3.2

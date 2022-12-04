@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.0](https://github.com/daybrush/keycon/compare/react-keycon@0.2.2...react-keycon@0.3.0) (2022-12-04)
+
+
+### :rocket: New Features
+
+* add checker option ([ca3ec3b](https://github.com/daybrush/keycon/commit/ca3ec3be8df6ce9d0efb4adbdd01a9e273af3a05))
+
+
+### :mega: Other
+
+* update packages versions ([09cbc30](https://github.com/daybrush/keycon/commit/09cbc30b426fbb5acfeab77d2f6651dccb24eb1a))
+
+
+
 ## [0.2.2](https://github.com/daybrush/keycon/compare/react-keycon@0.2.0...react-keycon@0.2.2) (2022-10-19)
 
 
