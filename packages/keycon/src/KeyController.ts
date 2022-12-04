@@ -1,60 +1,8 @@
 import EventEmitter, { EmitterParam, TargetParam } from "@scena/event-emitter";
-import { names } from "keycode";
+
 import { isString, isArray, addEvent, removeEvent } from "@daybrush/utils";
+import { getArrangeCombi, getKey, getCombi } from "./utils";
 
-const codeData = {
-    "+": "plus",
-    "left command": "meta",
-    "right command": "meta",
-};
-const keysSort = {
-    shift: 1,
-    ctrl: 2,
-    alt: 3,
-    meta: 4,
-};
-/**
- * @memberof KeyController
- */
-export function getKey(keyCode: number, keyName?: string): string {
-    let key = (names[keyCode] || keyName || "").toLowerCase();
-
-    for (const name in codeData) {
-        key = key.replace(name, codeData[name]);
-    }
-    return key.replace(/\s/g, "");
-}
-
-/**
- * @memberof KeyController
- */
-export function getCombi(e: KeyboardEvent, key: string = getKey(e.keyCode, e.key)): string[] {
-    const keys = getModifierCombi(e);
-    keys.indexOf(key) === -1 && keys.push(key);
-
-    return keys.filter(Boolean);
-}
-
-/**
- * @memberof KeyController
- */
-export function getModifierCombi(e: KeyboardEvent): string[] {
-    const keys = [e.shiftKey && "shift", e.ctrlKey && "ctrl", e.altKey && "alt", e.metaKey && "meta"];
-
-    return keys.filter(Boolean);
-}
-
-function getArrangeCombi(keys: string[]) {
-    const arrangeKeys = keys.slice();
-    arrangeKeys.sort((prev, next) => {
-        const prevScore = keysSort[prev] || 5;
-        const nextScore = keysSort[next] || 5;
-
-        return prevScore - nextScore;
-    });
-
-    return arrangeKeys;
-}
 /**
  * @typedef
  * @memberof KeyController
@@ -84,6 +32,8 @@ export interface KeyconEvents {
     keyup: OnKeyup;
     blur: OnBlur;
 }
+export type KeyControllerEvents = KeyconEvents;
+
 let globalKeyController!: KeyController;
 
 /**

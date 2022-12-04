@@ -1,17 +1,18 @@
 import { ReactiveAdapter, reactive, Ref, observe, ReactiveObject, Observer } from "@cfcs/core";
-import KeyController, { KeyconEvents } from "./KeyController";
+import KeyController, { KeyControllerEvents, KeyControllerEvent } from "./KeyController";
 
-export interface ReactiveKeyConData {
+export interface ReactiveKeyControllerData {
     ref?: Ref<HTMLElement | null | undefined>;
+    checker?: (e: KeyControllerEvent) => boolean;
     keys: string | string[];
 }
-export type ReactiveKeyCon = ReactiveObject<{
+
+export type ReactiveKeyController = ReactiveObject<{
     inst: KeyController;
     keys: string | string[];
     isKeydown: Observer<boolean>;
     destroy(): void;
 }>;
-
 
 let instanceMap!: Map<HTMLElement | Window | Document, {
     inst: KeyController;
@@ -19,14 +20,14 @@ let instanceMap!: Map<HTMLElement | Window | Document, {
 }>;
 
 export const REACTIVE: ReactiveAdapter<
-    ReactiveKeyCon,
+    ReactiveKeyController,
     { isKeydown: boolean },
     never,
-    ReactiveKeyConData,
-    KeyconEvents
+    ReactiveKeyControllerData,
+    KeyControllerEvents
 > = {
     events: ["keydown", "keyup", "blur"],
-    state: { isKeydown : false },
+    state: { isKeydown: false },
     mounted(data) {
         if (!instanceMap) {
             instanceMap = new Map();
@@ -48,9 +49,12 @@ export const REACTIVE: ReactiveAdapter<
         const keycon = info.inst;
         const keys = data.keys;
         const isKeydown = observe(false);
+        const checker = data.checker;
 
-        keycon.keydown(keys, () => {
-            isKeydown.current = true;
+        keycon.keydown(keys, (e: KeyControllerEvent) => {
+            if (!checker || checker(e)) {
+                isKeydown.current = true;
+            }
         });
         keycon.keyup(keys, () => {
             isKeydown.current = false;

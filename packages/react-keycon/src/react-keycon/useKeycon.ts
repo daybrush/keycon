@@ -1,16 +1,15 @@
 import { RefObject } from "react";
 import { ReactReactiveAdapterResult, useReactive, } from "@cfcs/react";
-import { REACTIVE } from "keycon";
+import { REACTIVE, ReactiveKeyControllerData } from "keycon";
 
 
-export interface KeyControllerOptions {
+export interface ReactKeyControllerProps extends ReactiveKeyControllerData {
     ref?: RefObject<HTMLElement | null | undefined>;
-    keys: string | string[];
 }
 export interface ReactKeyControllerResult extends ReactReactiveAdapterResult<typeof REACTIVE> {
 }
 
-export function useKeycon(props: KeyControllerOptions): ReactKeyControllerResult {
+export function useKeycon(props: ReactKeyControllerProps): ReactKeyControllerResult {
     return useReactive({
         ...REACTIVE,
         data() {
