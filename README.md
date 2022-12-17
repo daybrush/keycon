@@ -4,8 +4,12 @@ Keyboard Controller
 
 * [API Documentation](https://daybrush.com/keycon/release/latest/doc/)
 
-
+### Frameworks
 * [React](https://github.com/daybrush/keycon/tree/master/packages/react-keycon)
+* [Vue2](https://github.com/daybrush/keycon/tree/master/packages/vue2-keycon)
+* [Vue3](https://github.com/daybrush/keycon/tree/master/packages/vue-keycon)
+* [Svelte](https://github.com/daybrush/keycon/tree/master/packages/svelte-keycon)
+
 ## Installation
 ```
 npm i keycon
