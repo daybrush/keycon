@@ -1,4 +1,4 @@
-import { ReactiveAdapter, reactive, Ref, observe, ReactiveObject, Observer } from "@cfcs/core";
+import { ReactiveAdapter, partialReactive, Ref, observe, ReactiveObject, Observer } from "@cfcs/core";
 import KeyController, { KeyControllerEvents, KeyControllerEvent } from "./KeyController";
 
 export interface ReactiveKeyControllerData {
@@ -63,7 +63,7 @@ export const REACTIVE: ReactiveAdapter<
             isKeydown.current = false;
         });
 
-        return reactive({
+        return partialReactive({
             inst: keycon,
             keys,
             destroy: () => keycon.destroy(),
